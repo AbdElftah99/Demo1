@@ -1,0 +1,67 @@
+<section class="p-5 border border-4 border-dark bg-success-subtle">
+    <h2>All Product List</h2>
+  
+    <hr />
+    <div class="container">
+      <div class="row g-4 row-cols-1 row-cols-md-2">
+        @for ( product of productList; track $index) {
+        <div class="col">
+          <div class="card">
+            <img [src]="product.imgSrc" class="card-img" alt="" />
+  
+            <div class="card-body">
+              <h3>{{ product.name }}</h3>
+              <h4>{{ product.category }}</h4>
+              <h5>{{ product.price }}</h5>
+              <h6>{{ product.onSale }}</h6>
+  
+              <hr />
+  
+              <ul>
+                @for(rev of product.reviews; track $index ){
+                <li>rating {{ rev.rating }}</li>
+                <li>comment {{ rev.comment }}</li>
+                <li>reviewerName {{ rev.reviewerName }}</li>
+                <hr />
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+  
+  <!-- control flow (17) - for , if , switch  - directive (ngfor , ngif ,ngswitch) 16 -->
+  
+  <hr />
+  
+  <h2 class="bg-danger text-warning">Recommend Products</h2>
+  <p>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero aliquam
+    possimus quos rem quo sit.
+  </p>
+  
+  <!-- 
+  @defer  - lazyloading
+  
+    on , when
+    on -- >timer , - interaction (click , keydown) - hover( hamada ) - on viewport( hamada )
+    -----
+    idle
+  
+  
+    @placeholder
+    @loading
+    @error
+  
+  
+  -->
+  
+  <button #hamada>Show Recommendation Products</button>
+  
+  @defer ( on interaction(hamada) ) {
+  <app-recom-product></app-recom-product>
+  } @placeholder {}
+  
